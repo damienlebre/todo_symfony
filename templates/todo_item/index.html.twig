@@ -1,10 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TodoItemController!{% endblock %}
+{% block title %}Todo Manager!{% endblock %}
 
 {% block body %}
 
-
-<div class="example-wrapper">
+<div class="todoList">
+    {% for todo in todos %}
+        <div class="todoTitle">{{todo.title}}</div>
+        <div class="todoContent">{{todo.content}}</div>
+        <div class="todoDone">{{todo.isDone|date('Y-m-d H:i:s')}}</div>
+        <div class="todoDoneAt">{{todo.doneAt|date('Y-m-d H:i:s')}}</div>
+        <div class="todoFooter">
+            <div class="todocreateddAt">{{todo.createdAt|date('Y-m-d H:i:s')}}</div>
+        </div>
+     {% endfor %}   
+</div>
  
 {% endblock %}
