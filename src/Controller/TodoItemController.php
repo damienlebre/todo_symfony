@@ -16,6 +16,15 @@ class TodoItemController extends AbstractController
     public function index(TodoItemRepository $todoRepository): Response
     {
             $Todos = $todoRepository->findAll();
-        return $this->render('todo_item/index.html.twig', ["todos"=>$Todos]);
+        return $this->render('todo_item/index.html.twig', ["todos" => $Todos]);
+    }
+
+    /**
+     * @Route("/{id}", name="todo_show")
+     */
+    public function show(TodoItemRepository $todoRepository, $id): Response
+    {
+            $Todo = $todoRepository->findOneBy(['id' => $id]);
+        return $this->render('todo_item/show.html.twig', ["todo"=>$Todo]);
     }
 }
