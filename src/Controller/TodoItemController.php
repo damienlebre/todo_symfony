@@ -45,8 +45,10 @@ class TodoItemController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
           
-            $todo->setCreatedAt(new \DateTimeImmutable());
-            
+            // $todo->setCreatedAt(new \DateTimeImmutable());
+            if($todo->getIsDone() == TRUE){
+                $todo->setDoneAt(new \DateTimeImmutable());
+            }
             $em->flush();
             return $this->redirectToRoute('Todo');
         }
