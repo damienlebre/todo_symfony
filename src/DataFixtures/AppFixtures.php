@@ -14,7 +14,7 @@ class AppFixtures extends Fixture
          $todoItem = new TodoItem();
         $todoItem->setTitle("Todo n $i");
         $todoItem->setcontent("Logoden biniou degemer. Ken rev diouzh. Askorn santout broustañ. Aradon horolaj eizh. Trubard redek benveg. Karrez e ugent. Chom enor da. Anezhi Pederneg kempenn. Gallek geot padout. Pomper Santez-Anna-Wened asied.i");
-        $todoItem->setIsDone(true);
+        $todoItem->setIsDone(false);
         $todoItem->setCreatedAt(new \DateTimeImmutable());
         $todoItem->setDoneAt(new \DateTimeImmutable());
 

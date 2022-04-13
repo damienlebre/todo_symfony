@@ -11,7 +11,7 @@
         <div class="todoDone">Réalisée : {{todo.isDone}}</div>
         <div class="todoDoneAt">Date réalisation :{{todo.doneAt|date('Y-m-d H:i:s')}}</div>
         <div class="todocreateddAt">{{todo.createdAt|date('Y-m-d H:i:s')}}</div> 
-        
+       <a href="{{ path('todo_modify', {id: todo.id}) }}">modifier la tâche</a> 
     </div>
  
 {% endblock %}

@@ -38,7 +38,7 @@ class TodoItem
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime_immutable", nullable=true)
      */
     private $done_at;
 
@@ -100,7 +100,7 @@ class TodoItem
         return $this->done_at;
     }
 
-    public function setDoneAt(\DateTimeImmutable $done_at): self
+    public function setDoneAt(?\DateTimeImmutable $done_at): self
     {
         $this->done_at = $done_at;
 
