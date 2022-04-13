@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {{ form_row(form.title, {'attr': {'class': 'form-control'}, 'label':'titre :' }) }}
+    {{ form_row(form.content, {'attr': {'class': 'form-control'}, 'label':'détail :' }) }}
+    {% if app.request.attributes.get('_route') == "todo_modify" %}
+         {{ form_row(form.is_done, {'attr': {'class': 'form-control'}, 'label':'réalisé :' }) }}
+    {% else %} 
+        {{ form_row(form.is_done, {'attr': {'class': 'hidden'}, 'label':'réalisé :' }) }}
+    {% endif %}
+    <button  type="submit">Soumettre</button>
+{{ form_end(form) }}
