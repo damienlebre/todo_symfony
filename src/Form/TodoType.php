@@ -14,7 +14,7 @@ class TodoType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            // ->add('is_done')
+             ->add('is_done')
             // ->add('created_at')
             // ->add('done_at')
         ;

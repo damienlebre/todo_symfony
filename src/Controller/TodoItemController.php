@@ -46,6 +46,7 @@ class TodoItemController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
           
             $todo->setCreatedAt(new \DateTimeImmutable());
+            
             $em->flush();
             return $this->redirectToRoute('Todo');
         }
@@ -83,4 +84,18 @@ class TodoItemController extends AbstractController
             ]);
     }
     
+
+     /**
+     * @Route("/delete/{id}", name="todo_delete")
+     */
+    public function delete(EntityManagerInterface $em, TodoItem $todo): Response
+    {
+        $em->remove($todo);
+        $em->flush();
+        return $this->redirectToRoute("Todo");
+    }
+
 }
+
+
+
