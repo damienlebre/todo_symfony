@@ -42,6 +42,12 @@ class TodoItem
      */
     private $done_at;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="todoItems")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class TodoItem
     public function setDoneAt(?\DateTimeImmutable $done_at): self
     {
         $this->done_at = $done_at;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

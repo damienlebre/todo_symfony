@@ -4,6 +4,11 @@
 
 {% block body %}
 
+<h1>Todo Manager</h1>
+{{ form_start(filter) }}
+    {{ form_row(filter) }}
+{{ form_end(filter) }}
+    
 <div >
     {% for todo in todos %}
             <div class="todoTitle">{{todo.title}}</div>        
