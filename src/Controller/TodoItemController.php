@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-
 use DateTime;
 use Exception;
 use App\Form\TodoType;
 use App\Entity\TodoItem;
+use App\Form\FilterType;
+use App\Entity\SearchData;
 use App\Repository\TodoItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,10 +21,23 @@ class TodoItemController extends AbstractController
     /**
      * @Route("/", name="Todo")
      */
-    public function index(TodoItemRepository $todoRepository): Response
+    public function index(TodoItemRepository $todoRepository, Request $request): Response
     {
-            $Todos = $todoRepository->findAll();
-        return $this->render('todo_item/index.html.twig', ["todos" => $Todos]);
+        $data = new SearchData();
+        $data->setDone = $request->get('null');
+        $filter = $this->createForm(FilterType::class, $data);
+        $filter->handleRequest($request);
+        $Todos = $todoRepository->findAll($data);
+
+        if($filter->isSubmitted() && $filter->isValid()){
+            
+            $done = $data->getDone();
+            $Todos = $todoRepository->findBy(['is_done' => $done]);
+            if($data->getDone()==null){
+                $Todos = $todoRepository->findAll($data);
+            }             
+        }
+        return $this->render('todo_item/index.html.twig', ["todos" => $Todos, "filter" => $filter->createView()]);
     }
 
     /**
@@ -97,6 +111,7 @@ class TodoItemController extends AbstractController
         return $this->redirectToRoute("Todo");
     }
 
+    
 }
 
 

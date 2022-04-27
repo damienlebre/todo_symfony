@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+  <h1>Détail de la Catégorie</h1>
+    <div>
+        <div >Catégorie</div>
+        <div>
+            <h4 >{{ category.name }}</h4>
+            <a  href="{{ path('category_edit', {id: category.id}) }}">Modifier</a>
+            <a  href="{{ path('category_delete', {id: category.id}) }}">Supprimer</a> 
+        </div>
+    </div>
+{% endblock %}
